@@ -55,3 +55,20 @@ O arquivo original não é alterado e a formatação visual será realizada post
 5. numeração sequencial por cliente.
 
 # MÓDULO 2 - Processo de Limpeza de Cobrança Escritural
+
+- Recebe `planilha_limpa.xlsx` (Módulo 1) e `base_geral.xlsm`
+- Identifica os nomes únicos dos proprietários na planilha limpa
+- Busca o histórico de boletos de cada proprietário na base geral
+- Ordena os boletos por `DATA VENC.`, do mais recente para o mais antigo
+- Analisa os três boletos mais recentes de cada proprietário:
+  - **EMITIR:** pelo menos um dos três está com status `PAGO`
+  - **NÃO EMITIR:** nenhum dos três está com status `PAGO`
+  - **Sem histórico:** classifica como `EMITIR`
+  - **Menos de três boletos:** analisa os registros existentes
+  - Somente o status `PAGO` é considerado pagamento
+- Gera `planilha_inadimplencia.xlsx` com duas abas:
+  1. **Análise de emissão:** relação de proprietários, últimos vencimentos, status e decisão de emissão
+  2. **Histórico completo:** cópia de todos os boletos dos proprietários analisados, organizados por data e com cores para facilitar a revisão humana
+- Não altera os arquivos originais
+- A emissão depende de aprovação humana posterior
+
